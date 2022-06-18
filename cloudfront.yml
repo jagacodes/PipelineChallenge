@@ -3,7 +3,7 @@ Parameters:
   PipelineID:
     Description: Existing Bucket name
     Type: String
-    Default: mybucket777463942844
+    
 
 Resources:
 

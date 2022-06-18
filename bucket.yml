@@ -1,6 +1,6 @@
 Parameters:
 # New Bucket name
-  JagaBucket:
+  MyBucketName:
     Description: Existing Bucket name
     Type: String
 
@@ -12,7 +12,7 @@ Resources:
   WebsiteBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Sub "${JagaBucket}"
+      BucketName: !Sub "${MyBucketName}"
       AccessControl: PublicRead
       WebsiteConfiguration:
         IndexDocument: index.html
@@ -21,11 +21,11 @@ Resources:
   WebsiteBucketPolicy:
     Type: AWS::S3::BucketPolicy
     Properties:
-      Bucket: !Ref 'JagaBucket'
+      Bucket: !Ref 'WebsiteBucket'
       PolicyDocument:
         Statement:
         - Sid: PublicReadForGetBucketObjects
           Effect: Allow
           Principal: '*'
           Action: s3:GetObject
-          Resource: !Join ['', ['arn:aws:s3:::', !Ref 'JagaBucket', /*]]
+          Resource: !Join ['', ['arn:aws:s3:::', !Ref 'WebsiteBucket', /*]]
